@@ -1,0 +1,32 @@
+
+<html >
+
+    <body onload="">
+      <iframe 
+        allow-storage-access-by-user-activation
+        allow-scripts
+        allow-same-origin
+      src="" id = "dashboardContainer" width="800" height="600" >
+      </iframe>
+      Hello 
+    </body>
+  
+    <script>
+        iframeurl = GetParameterValues('iframeurl');
+        var containerDiv = document.getElementById("dashboardContainer");
+        containerDiv.src = iframeurl;
+  
+        function GetParameterValues(param) {
+                  var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                  for (var i = 0; i < url.length; i++) {
+                      var urlparam = url[i].split('=');
+                      if (urlparam[0] === param) {
+                          return decodeURIComponent(urlparam[1]);
+                      }
+                  }
+        }
+     
+  
+    </script>
+    
+    </html>
