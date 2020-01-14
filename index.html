@@ -127,8 +127,11 @@ function openTab(dashboardId, element) {
     container: containerDiv,
     height: "600px",
     width: "100%",
-    className: dashboardId
-  };
+    className: dashboardId,
+    parameters: {
+      country: "United States"
+    }
+  }  
   dashboard = QuickSightEmbedding.embedDashboard(params);
   dashboard.on('load', onVisualLoaded); 
 }
