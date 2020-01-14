@@ -72,6 +72,7 @@ body, html {
 
 <script>
   var urlPrefix = "";
+  var currentDashboardId = "";
   var dashboardContainerMap = {
     "dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_12fcc8be-2b2f-457b-a281-3bdf45670c05" : "DashboardContainer1",
     "dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_c44834cf-2cd6-43f2-9e13-cdf70718175d" : "DashboardContainer2",
@@ -91,8 +92,9 @@ function getUrl(dashboardId) {
 
 function onVisualLoaded() {
   alert("All visuals loaded");
-  //urlPrefix = dashboardUrl.split("dashboards")[0];
-  //alert(urlPrefix);
+  const loadedUrl = document.getElementsByClassName(['quicksight-embedding-iframe', currentDashboardId].join(' ').trim());
+  urlPrefix = loadedUrl.split("dashboards")[0];
+  alert(urlPrefix);
 }
 
 function GetQueryParam(param) {
@@ -107,6 +109,7 @@ function GetQueryParam(param) {
 
 function openTab(dashboardId, element) {
   var i, tabcontent, tablinks;
+  currentDashboardId = dashboardId;
 
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -121,7 +124,8 @@ function openTab(dashboardId, element) {
     url: dashboardUrl,
     container: containerDiv,
     height: "600px",
-    width: "100%"
+    width: "100%",
+    className: dashboardId
   };
   dashboard = QuickSightEmbedding.embedDashboard(params);
   dashboard.on('load', onVisualLoaded); 
