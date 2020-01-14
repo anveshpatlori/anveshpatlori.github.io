@@ -85,10 +85,10 @@ function getUrl(dashboardId) {
 
   if (urlPrefix != "") {
     alert("url constructed : " + (urlPrefix + dashboardId));
-    return urlPrefix + dashboardId;
+    return urlPrefix + dashboardId + "?sheetTabsDisabled=true";
   }
   
-  return GetQueryParam("dashboardUrl");
+  return GetQueryParam("dashboardUrl") + "?sheetTabsDisabled=true";
 }
 
 function onVisualLoaded() {
@@ -127,10 +127,7 @@ function openTab(dashboardId, element) {
     container: containerDiv,
     height: "600px",
     width: "100%",
-    className: dashboardId,
-    parameters: {
-      country: "United States"
-    }
+    className: dashboardId
   }  
   dashboard = QuickSightEmbedding.embedDashboard(params);
   dashboard.on('load', onVisualLoaded); 
