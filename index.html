@@ -1,141 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://unpkg.com/amazon-quicksight-embedding-sdk@1.0.6/dist/quicksight-embedding-js-sdk.min.js"></script>
-<style>
-* {box-sizing: border-box}
-
-/* Set height of body and the document to 100% */
-body, html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial;
-}
-
-/* Style tab links */
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  font-size: 17px;
-  width: 25%;
-}
-
-.tablink:hover {
-  background-color: #777;
-}
-
-/* Style the tab content (and add height:100% for full page content) */
-.tabcontent {
-  display: none;
-  padding: 100px 20px;
-  height: 100%;
-}
-
-</style>
-</head>
-<body onload="">
-
-<button class="tablink" onclick="openTab('dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_12fcc8be-2b2f-457b-a281-3bdf45670c05', this)">Dashboard1</button>
-<button class="tablink" onclick="openTab('dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_c44834cf-2cd6-43f2-9e13-cdf70718175d', this)">Dashboard2</button>
-<button class="tablink" onclick="openTab('dashboards/d85068e4-3cad-48a4-b302-d081bc04a9fd/sheets/d85068e4-3cad-48a4-b302-d081bc04a9fd_a48e0426-e7a6-4566-a094-4187996e2523', this)">Dashboard3</button>
-<button class="tablink" onclick="openTab('dashboards/d85068e4-3cad-48a4-b302-d081bc04a9fd/sheets/d85068e4-3cad-48a4-b302-d081bc04a9fd_1b493716-7665-46b1-8f19-d2b57c420454', this)">Dashboard4</button>
-
-<div id="dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_12fcc8be-2b2f-457b-a281-3bdf45670c05" class="tabcontent">
-  <h3>Dashboard1</h3>
-  <div id="DashboardContainer1"></div>
-  <p>Home is where the heart is..</p>
-</div>
-
-<div id="dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_c44834cf-2cd6-43f2-9e13-cdf70718175d" class="tabcontent">
-  <h3>Dashboard2</h3>
-  <div id="DashboardContainer2"></div>
-  <p>Some news this fine day!</p> 
-</div>
-
-<div id="dashboards/d85068e4-3cad-48a4-b302-d081bc04a9fd/sheets/d85068e4-3cad-48a4-b302-d081bc04a9fd_a48e0426-e7a6-4566-a094-4187996e2523" class="tabcontent">
-  <h3>Dashboard3</h3>
-  <div id="DashboardContainer3"></div>
-  <p>Get in touch, or swing by for a cup of coffee.</p>
-</div>
-
-<div id="dashboards/d85068e4-3cad-48a4-b302-d081bc04a9fd/sheets/d85068e4-3cad-48a4-b302-d081bc04a9fd_1b493716-7665-46b1-8f19-d2b57c420454" class="tabcontent">
-  <h3>Dashboard4</h3>
-  <div id="DashboardContainer4"></div>
-  <p>Get in touch, or swing by for a cup of coffee.</p>
-</div>
-
-<script>
-  var urlPrefix = "";
-  var currentDashboardId = "";
-  var dashboardContainerMap = {
-    "dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_12fcc8be-2b2f-457b-a281-3bdf45670c05" : "DashboardContainer1",
-    "dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_c44834cf-2cd6-43f2-9e13-cdf70718175d" : "DashboardContainer2",
-    "dashboards/d85068e4-3cad-48a4-b302-d081bc04a9fd/sheets/d85068e4-3cad-48a4-b302-d081bc04a9fd_a48e0426-e7a6-4566-a094-4187996e2523" : "DashboardContainer3",
-    "dashboards/d85068e4-3cad-48a4-b302-d081bc04a9fd/sheets/d85068e4-3cad-48a4-b302-d081bc04a9fd_1b493716-7665-46b1-8f19-d2b57c420454" : "DashboardContainer4"
-  };
 
 
-function getUrl(dashboardId) {
+<html >
 
-  if (urlPrefix != "") {
-    alert("url constructed : " + (urlPrefix + dashboardId));
-    return urlPrefix + dashboardId + "?sheetTabsDisabled=true";
-  }
-  
-  return GetQueryParam("dashboardUrl");
-}
+  <body onload="">
+    <iframe 
+      allow-storage-access-by-user-activation
+      allow-scripts
+      allow-same-origin
+    src="" id = "dashboardContainer" width="800" height="600" >
+    </iframe>
+    Hello 
+  </body>
 
-function onVisualLoaded() {
-  alert("All visuals loaded");
-  const loadedUrl = document.getElementsByClassName(['quicksight-embedding-iframe', currentDashboardId].join(' ').trim())[0];
-  urlPrefix = loadedUrl.src.split("dashboards")[0];
-  alert(urlPrefix);
-}
+  <script>
+      iframeurl = GetParameterValues('iframeurl');
+      var containerDiv = document.getElementById("dashboardContainer");
+      containerDiv.src = iframeurl;
 
-function GetQueryParam(param) {
-      var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      for (var i = 0; i < url.length; i++) {
-        var urlparam = url[i].split('=');
-        if (urlparam[0] === param) {
-          return decodeURIComponent(urlparam[1]);
-        }
+      function GetParameterValues(param) {
+                var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for (var i = 0; i < url.length; i++) {
+                    var urlparam = url[i].split('=');
+                    if (urlparam[0] === param) {
+                        return decodeURIComponent(urlparam[1]);
+                    }
+                }
       }
-}
 
-function openTab(dashboardId, element) {
-  var i, tabcontent, tablinks;
-  currentDashboardId = dashboardId;
 
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  document.getElementById(dashboardId).style.display = "block";
-  var dashboardUrl = getUrl(dashboardId);
-
-  var containerDiv = document.getElementById(dashboardContainerMap[dashboardId]);
-  alert("sdk url : " + dashboardUrl);
-
-  var params = {
-    url: dashboardUrl,
-    container: containerDiv,
-    height: "600px",
-    width: "100%",
-    className: dashboardId
-  }  
-  dashboard = QuickSightEmbedding.embedDashboard(params);
-  dashboard.on('load', onVisualLoaded); 
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("dashboards/e4d3c8f2-a77e-4241-9975-bc163ffaba26/sheets/e4d3c8f2-a77e-4241-9975-bc163ffaba26_12fcc8be-2b2f-457b-a281-3bdf45670c05").click();
-</script>
-   
-</body>
-</html> 
+  </script>
+  
+  </html>
